@@ -483,6 +483,34 @@ app.get("/api/admin/users", (req, res) => {
   });
 });
 
+
+app.get("/debug/users", (req, res) => {
+  db.all("SELECT * FROM users", [], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
+app.get("/debug/orders", (req, res) => {
+  db.all("SELECT * FROM orders", [], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
+app.get("/debug/feedback", (req, res) => {
+  db.all("SELECT * FROM feedback", [], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
 const LISTEN_PORT = process.env.PORT || PORT;
 app.listen(LISTEN_PORT, () => {
   console.log(`Server running at http://localhost:${LISTEN_PORT}`);
